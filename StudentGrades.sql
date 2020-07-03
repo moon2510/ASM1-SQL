@@ -165,3 +165,31 @@ VALUES
     0 -- TeacherID - INT
 )
 
+SELECT s.FirstName, 
+       s.LastName, 
+       s.DateOfbirth, 
+       s.Gender
+FROM dbo.CourseStudent cs
+     INNER JOIN dbo.Students s ON cs.StudentID = s.ID;
+
+UPDATE dbo.Teacher
+SET
+    --ID - column value is auto-generated
+    dbo.Teacher.FullName = N'', -- nvarchar
+    dbo.Teacher.DateOfbirth = NULL, -- date
+    dbo.Teacher.Gender = '' -- char
+
+SELECT s.*
+FROM dbo.Students s
+WHERE s.ID = 3;
+
+
+EXEC dbo.udp_findStudentByID 2
+CREATE PROC udp_findStudentByID (@idStudent int)
+AS
+SELECT s.* FROM dbo.Students s WHERE s.ID = @idStudent
+
+
+
+SELECT s.LastName, cs.CourseID,  FROM dbo.CourseStudent cs INNER JOIN dbo.Students s ON cs.StudentID = s.ID
+
