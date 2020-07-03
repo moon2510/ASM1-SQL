@@ -208,3 +208,17 @@ SELECT	c2.ID
 FROM dbo.Courses c2
 WHERE c2.ClassID = @classID
 )
+
+SELECT dbo.udf_Findfailstudent (6,1)
+
+CREATE FUNCTION	udf_Findfailstudent(@grade int,@idstudent int)
+RETURNS INT
+AS
+BEGIN 
+	DECLARE	@idreturn INT;
+	IF(@grade	< 5)
+	BEGIN
+	SET @idreturn	= @idstudent	
+	END
+	RETURN @idreturn;
+END
