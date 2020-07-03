@@ -193,3 +193,18 @@ SELECT s.* FROM dbo.Students s WHERE s.ID = @idStudent
 
 SELECT s.LastName, cs.CourseID,  FROM dbo.CourseStudent cs INNER JOIN dbo.Students s ON cs.StudentID = s.ID
 
+
+EXEC udp_Findstudents 3
+
+
+ALTER	PROC udp_Findstudents(@classID INT)
+AS
+SELECT	s2.*
+FROM dbo.Students s2
+INNER JOIN	dbo.CourseStudent cs ON s2.ID = cs.StudentID 
+WHERE cs.ID IN
+(
+SELECT	c2.ID 
+FROM dbo.Courses c2
+WHERE c2.ClassID = @classID
+)
